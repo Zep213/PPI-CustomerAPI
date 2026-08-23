@@ -1,0 +1,11 @@
+backend/customer-ms/build/
+backend/customer-ms/.gradle/
+backend/customer-ms/.idea/
+backend/customer-ms/gradlew
+backend/customer-ms/gradlew.bat
+backend/customer-ms/settings.gradle
+backend/customer-ms/.gitattributes
+backend/customer-ms/.gitignore
+backend/customer-ms/gradle/wrapper/
+backend/.idea/
+backend/docker-compose.yml
