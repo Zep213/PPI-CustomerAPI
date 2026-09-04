@@ -3,6 +3,7 @@ package br.edu.catolica.customer_ms.controller;
 import br.edu.catolica.customer_ms.constants.CustomerConstants;
 import br.edu.catolica.customer_ms.dto.CustomerDTO;
 import br.edu.catolica.customer_ms.dto.ResponseDTO;
+import br.edu.catolica.customer_ms.dto.SellerProductsDTO;
 import br.edu.catolica.customer_ms.service.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -12,10 +13,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static br.edu.catolica.customer_ms.constants.CustomerConstants.*;
 
@@ -38,5 +36,11 @@ public class CustomerController {
         customerService.save(customerDTO);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new ResponseDTO(CUSTOMER_MESSAGE_201, HttpStatus.CREATED.value()));
+    }
+
+    @GetMapping("/{sellerId}")
+    public ResponseEntity<SellerProductsDTO> findProductsBySeller(@PathVariable("sellerId")Long sellerId){
+       return ResponseEntity.status(HttpStatus.OK)
+               .body(customerService.findProductsBySellerId(sellerId));
     }
 }
