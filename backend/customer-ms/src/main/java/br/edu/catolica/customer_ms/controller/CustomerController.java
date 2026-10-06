@@ -1,5 +1,6 @@
 package br.edu.catolica.customer_ms.controller;
 
+import br.edu.catolica.customer_ms.cache.ProductCacheReader;
 import br.edu.catolica.customer_ms.constants.CustomerConstants;
 import br.edu.catolica.customer_ms.dto.CustomerDTO;
 import br.edu.catolica.customer_ms.dto.ResponseDTO;
@@ -24,6 +25,7 @@ import static br.edu.catolica.customer_ms.constants.CustomerConstants.*;
 public class CustomerController {
 
     private final CustomerService customerService;
+    private final ProductCacheReader productCacheReader;
 
     @Operation(summary = "Cadastra cliente", description = "Cadastra um customer na base de dados")
     @ApiResponses({
@@ -41,6 +43,6 @@ public class CustomerController {
     @GetMapping("/{sellerId}")
     public ResponseEntity<SellerProductsDTO> findProductsBySeller(@PathVariable("sellerId")Long sellerId){
        return ResponseEntity.status(HttpStatus.OK)
-               .body(customerService.findProductsBySellerId(sellerId));
+               .body(productCacheReader.getProdcutsBySeller(sellerId));
     }
 }

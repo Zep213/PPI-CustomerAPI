@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "seller-service", url = "${seller-service.menu.url}")
 public interface SellerServiceClient {
 
-    @GetMapping("/{sellerId}")
+    @GetMapping("/products/{sellerId}")
     SellerProductsDTO getProductBySellerId(@PathVariable("sellerId") Long id);
 
 }

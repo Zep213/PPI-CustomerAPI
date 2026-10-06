@@ -23,6 +23,25 @@ spring:
     validate-on-migration: true
     fail-on-missing-locations: true
 
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:localhost}:${KAFKA_PORT:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      retries: 3
+    consumer:
+      group-id: seller-ms
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.use.type.headers: false
+        spring.json.value.default.type: br.edu.ppi.seller.dto.OrderCreatedEventDTO
+        spring.json.trusted.packages: br.edu.ppi.seller
+    properties:
+      spring.json.add.type.headers: true
+
   data:
     redis:
       host: redis

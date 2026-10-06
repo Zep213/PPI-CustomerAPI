@@ -3,6 +3,7 @@ package br.edu.ppi.seller.config;
 
 
 import org.springframework.context.annotation.Bean;
+import tools.jackson.databind.DefaultTyping;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.json.JsonMapper;
 import tools.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
@@ -31,7 +32,7 @@ public class RedisConfig {
                 .build();
 
         ObjectMapper objectMapper = JsonMapper.builder()
-                .activateDefaultTyping(ptv)
+                .activateDefaultTyping(ptv, DefaultTyping.NON_FINAL_AND_RECORDS)
                 .build();
 
         template.setValueSerializer(new GenericJacksonJsonRedisSerializer(objectMapper));

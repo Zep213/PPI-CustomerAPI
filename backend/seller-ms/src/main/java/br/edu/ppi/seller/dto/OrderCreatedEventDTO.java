@@ -1,0 +1,16 @@
+package br.edu.ppi.seller.dto;
+
+import lombok.Builder;
+
+import java.util.List;
+
+@Builder
+public record OrderCreatedEventDTO(
+        Long sellerId,
+        Long customerId,
+        String orderCode,
+        String customerName,
+        String customerEmail,
+        List<ItemRequestDTO> items
+) {
+}

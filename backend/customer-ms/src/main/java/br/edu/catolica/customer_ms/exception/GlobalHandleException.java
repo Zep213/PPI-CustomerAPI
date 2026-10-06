@@ -3,7 +3,7 @@ package br.edu.catolica.customer_ms.exception;
 
 
 
-import br.edu.catolica.customer_ms.dto.ErrorResponse;
+import br.edu.catolica.customer_ms.dto.ErrorResponseDTO;
 import org.jspecify.annotations.Nullable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -34,8 +34,8 @@ public class GlobalHandleException extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(CustomerException.class)
-    public ResponseEntity<ErrorResponse> handleCustomerErrorException(CustomerException ex, WebRequest req){
-        var errorResponse = ErrorResponse.builder()
+    public ResponseEntity<ErrorResponseDTO> handleCustomerErrorException(CustomerException ex, WebRequest req){
+        var errorResponse = ErrorResponseDTO.builder()
                 .apiPath(req.getDescription(false))
                 .message(ex.getMessage())
                 .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR.value())

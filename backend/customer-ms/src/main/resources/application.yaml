@@ -21,8 +21,34 @@ spring:
     fail-on-missing-locations: true
   data:
     redis:
-      host: ${REDIS_HOST:redis}
+      host: ${REDIS_HOST:localhost}
       port: 6379
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:localhost}:${KAFKA_PORT:9092}
+    admin:
+      auto-create: true
+      close-timeout: 10s
+      fail-fast: false
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      retries: 3
+      properties:
+        # Garante que o tipo da classe seja enviado no cabeçalho da mensagem
+        spring.json.add.type.headers: true
+
+    consumer:
+      group-id: customer-ms
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.use.type.headers: false
+        spring.json.value.default.type: br.edu.catolica.customer_ms.dto.OrderResponseDTO
+        spring.json.trusted.packages: br.edu.catolica.customer_ms
+
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
 
 seller-service:
   menu:
