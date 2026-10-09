@@ -5,8 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
 
-import static br.edu.catolica.customer_ms.constants.TopicCostants.ORDER_CREATED;
-import static br.edu.catolica.customer_ms.constants.TopicCostants.ORDER_RESPONSE;
+import static br.edu.catolica.customer_ms.constants.TopicConstants.ORDER_CREATED;
+import static br.edu.catolica.customer_ms.constants.TopicConstants.ORDER_RESPONSE;
 
 
 @Configuration
