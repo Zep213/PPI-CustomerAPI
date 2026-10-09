@@ -1,12 +1,13 @@
 package br.edu.catolica.customer_ms.config;
 
-import br.edu.catolica.customer_ms.constants.TopicConstants;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
 
-import static br.edu.catolica.customer_ms.constants.TopicConstants.ORDER_CREATED;
+import static br.edu.catolica.customer_ms.constants.TopicCostants.ORDER_CREATED;
+import static br.edu.catolica.customer_ms.constants.TopicCostants.ORDER_RESPONSE;
+
 
 @Configuration
 public class KafkaTopicConfig {
@@ -18,5 +19,14 @@ public class KafkaTopicConfig {
                 .replicas(1)
                 .build();
     }
+
+    @Bean
+    public NewTopic orderResponseTopic(){
+        return TopicBuilder.name(ORDER_RESPONSE)
+                .partitions(3)
+                .replicas(1)
+                .build();
+    }
+
 
 }
