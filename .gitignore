@@ -2,5 +2,6 @@ backend/customer-ms/build/
 backend/customer-ms/.gradle/
 backend/customer-ms/.idea/
 backend/.idea/
+.idea/
 docker-compose.yml
 backend/customer-ms/.gitignore
